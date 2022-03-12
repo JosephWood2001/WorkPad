@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import {View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import BottomBar from "./app/pages/BottomBar";
 import HomePage from "./app/pages/HomePage";
@@ -8,8 +8,8 @@ import theme from "./app/config/theme";
 export default function App() {
   return (
     <PaperProvider theme={theme}>
-      <HomePage />
-      <BottomBar />
+      <View style={{flex:10}}><HomePage /></View>
+      <View style={{flex:1}}><BottomBar /></View>
     </PaperProvider>
   );
 }

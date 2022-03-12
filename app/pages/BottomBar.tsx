@@ -1,8 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
+import { withTheme } from 'react-native-paper';
 import colors from '../config/colors';
 
-function BottomBar() {
+function BottomBar(props: any) {
+    const{ colors,roundness } = props.theme;
+
     return (
         <View
             style={{
@@ -15,4 +18,4 @@ function BottomBar() {
     );
 }
 
-export default BottomBar;
+export default withTheme(BottomBar);
