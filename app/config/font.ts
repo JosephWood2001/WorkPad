@@ -1,24 +1,25 @@
 import * as React from 'react';
 import { configureFonts, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import type { Fonts } from 'react-native-paper/lib/typescript/types';
 
 const fontConfig = {
     default: {
       regular: {
         fontFamily: "sans-serif",
-        'font-weight': 'normal',
+        fontWeight: 'normal',
       },
       medium: {
         fontFamily: "sans-serif-medium",
-        'font-weight': 'normal',
+        fontWeight: 'normal',
       },
       light: {
         fontFamily: "sans-serif-light",
-        'font-weight': 'normal',
+        fontWeight: 'normal',
       },
       thin: {
         fontFamily: "sans-serif-thin",
-        'font-weight': 'normal',
+        fontWeight: 'normal',
       },
-    },
+    } as Fonts,
   };
   export default fontConfig;

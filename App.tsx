@@ -6,6 +6,8 @@ import HomePage from "./app/pages/HomePage";
 import theme from "./app/config/theme";
 
 export default function App() {
+  console.log("app loaded");
+
   return (
     <PaperProvider theme={theme}>
       <View style={{flex:10}}><HomePage /></View>

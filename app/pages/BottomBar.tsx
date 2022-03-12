@@ -1,20 +1,32 @@
 import React from 'react';
-import { View } from 'react-native';
-import { withTheme } from 'react-native-paper';
-import colors from '../config/colors';
+import { withTheme, BottomNavigation, Text } from 'react-native-paper';
 
-function BottomBar(props: any) {
-    const{ colors,roundness } = props.theme;
+const HomeRoute = () => <Text>Home</Text>;
+
+const AlbumsRoute = () => <Text>Albums</Text>;
+
+const RecentsRoute = () => <Text>Recents</Text>;
+
+function BottomBar() {
+    const [index, setIndex] = React.useState(0);
+    const [routes] = React.useState([
+        { key: 'home', title: 'Home', icon: 'account' },
+        { key: 'albums', title: 'Albums', icon: 'album' },
+        { key: 'recents', title: 'Recents', icon: 'history' },
+    ]);
+
+    const renderScene = BottomNavigation.SceneMap({
+        home: HomeRoute,
+        albums: AlbumsRoute,
+        recents: RecentsRoute,
+    });
 
     return (
-        <View
-            style={{
-                backgroundColor:colors.primary,
-                flex:1,
-            }}
-        >
-
-        </View>
+        <BottomNavigation
+            navigationState={{ index, routes }}
+            onIndexChange={setIndex}
+            renderScene={renderScene}
+        />
     );
 }
 
