@@ -1,9 +1,7 @@
-import React from "react";
-import {Platform, SafeAreaView, View, StatusBar } from "react-native";
-import { Provider as PaperProvider } from "react-native-paper";
-import BottomBar from "./app/pages/MainNavigation";
-import HomePage from "./app/pages/HomePage";
+import React, {useState, useEffect} from "react";
+import { Button, Provider as PaperProvider, Text, TextInput } from "react-native-paper";
 import theme from "./app/config/theme";
+import { Platform, SafeAreaView, StatusBar } from "react-native";
 import MainNavigation from "./app/pages/MainNavigation";
 
 export default function App() {

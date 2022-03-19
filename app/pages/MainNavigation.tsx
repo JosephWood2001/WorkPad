@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View } from 'react-native';
 import { withTheme, BottomNavigation, Text } from 'react-native-paper';
+import EditExerciseTab from './EditExerciseTab';
 import ExercisesPage from './ExercisesPage';
 import HomePage from './HomePage';
 
@@ -8,11 +9,13 @@ const HomeRoute = () => <HomePage/>;
 
 const WorkoutsRoute = () => <Text>Workouts</Text>;
 
-const ExercisesRoute = () => <ExercisesPage/>;
+const ExercisesRoute = () => <EditExerciseTab/>;
 
 function MainNavigation() {
-    const [index, setIndex] = React.useState(0);
-    const [routes] = React.useState([
+
+    //Sets the states for the page navigation
+    const [index, setIndex] = useState(0);
+    const [routes] = useState([
         { key: 'home', title: 'Home', icon: 'account' },
         { key: 'workouts', title: 'Workouts', icon: 'weight-lifter' },
         { key: 'exercises', title: 'Exercises', icon: 'dumbbell' },
