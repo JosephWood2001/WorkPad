@@ -1,15 +1,16 @@
 export default class Exercise{
-    exerciseName: string;
-    weight: number | null;
-    reps: number | null;
-    sets: number | null;
+    myName: string;
+    discription: string | null;
     duration: number | null;
+    intensity: number | null;
+    record: boolean;
+
     
-    constructor(exerciseName: string, weight: number | null, reps: number | null, sets: number | null, duration: number | null){
-        this.exerciseName = exerciseName;
-        this.weight = weight;
-        this.reps = reps;
-        this.sets = sets;
+    constructor(myName: string, discription: string | null, duration: number | null, intensity: number | null, record: boolean){
+        this.myName = myName;
+        this.discription = discription;
         this.duration = duration;
+        this.intensity = intensity;
+        this.record = record;
     }
 }

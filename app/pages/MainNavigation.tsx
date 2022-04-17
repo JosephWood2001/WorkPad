@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { View } from 'react-native';
 import { withTheme, BottomNavigation, Text } from 'react-native-paper';
-import EditExerciseTab from './EditExerciseTab';
 import ExercisesPage from './ExercisesPage';
 import HomePage from './HomePage';
 
@@ -9,7 +8,7 @@ const HomeRoute = () => <HomePage/>;
 
 const WorkoutsRoute = () => <Text>Workouts</Text>;
 
-const ExercisesRoute = () => <EditExerciseTab/>;
+const ExercisesRoute = () => <ExercisesPage/>;
 
 function MainNavigation() {
 

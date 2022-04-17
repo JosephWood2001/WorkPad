@@ -1,40 +1,54 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Card, Title, Button, Paragraph, Text } from 'react-native-paper';
+import { Card, Title, Button, Paragraph, Text, Avatar } from 'react-native-paper';
 import Exercise from '../objects/Exercise';
 
-
-function ExerciseWidget(props : {exercise:Exercise}) {
+function ExerciseWidget(props : {exercise:Exercise,editable:boolean}) {
     let exercise = props.exercise as Exercise;
-    let attributes = [];
-    //adds all the attributes of exercise to attributes array
+    const content: JSX.Element[] = [];
+
+    //adds discription text
+    if(exercise.discription != null){
+        content.push(<Text>{exercise.discription}</Text>);
+    }
+    //adds icons for duration,intensity, and record
     if(exercise.duration != null){
-        attributes.push(["Duration",exercise.duration]);
+        const subcontent: JSX.Element[] = [];
+        for(let i = exercise.duration; i > 0; i--){
+            subcontent.push(<Avatar.Icon size={30} icon="timer-outline" />);
+        }
+        content.push(<View style={{
+            flexDirection:"row"
+        }}>{subcontent}</View>)
     }
-    if(exercise.weight != null){
-        attributes.push(["Weight",exercise.weight]);
+    if(exercise.intensity != null){
+        const subcontent: JSX.Element[] = [];
+        for(let i = exercise.intensity; i > 0; i--){
+            subcontent.push(<Avatar.Icon size={30} icon="weight" />);
+        }
+        content.push(<View style={{
+            flexDirection:"row"
+        }}>{subcontent}</View>)
     }
-    if(exercise.reps != null){
-        attributes.push(["Reps",exercise.reps]);
-    }
-    if(exercise.sets != null){
-        attributes.push(["Sets",exercise.sets]);
+    if(exercise.record == true){
+        content.push(<Avatar.Icon size={30} icon="notebook-outline" />);
     }
 
+    //adds edit button
+    let edit:JSX.Element|null = null;
+    if(props.editable == true){
+        edit=<Button>Edit</Button>
+    }
     return (
         <Card>
             <Card.Title
-                title= {exercise.exerciseName}
+                title= {exercise.myName}
             />
             <Card.Content>
-                {
-                    attributes.map((values) => (
-                        <Text style={{fontWeight:'bold'}}>{values[0]}<Text style={{fontWeight:'normal'}}> {values[1]}</Text></Text>
-                    ))
-                }
+                {content}
             </Card.Content>
             <Card.Actions>
-                <Button>Edit</Button>
+                {edit}
             </Card.Actions>
         </Card>
     );
