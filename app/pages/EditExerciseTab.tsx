@@ -5,7 +5,7 @@ import { AppRegistry, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function EditExerciseTab() {
-    const [exercise, setExercise] = useState<Exercise>(new Exercise("new exercise",null,null,null,false));
+    const [exercise, setExercise] = useState<Exercise>(new Exercise("new exercise","",null,null,false));
   
     const save = async () => {
         try {

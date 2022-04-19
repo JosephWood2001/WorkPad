@@ -1,12 +1,12 @@
 export default class Exercise{
     myName: string;
-    discription: string | null;
+    discription: string;
     duration: number | null;
     intensity: number | null;
     record: boolean;
 
     
-    constructor(myName: string, discription: string | null, duration: number | null, intensity: number | null, record: boolean){
+    constructor(myName: string, discription: string, duration: number | null, intensity: number | null, record: boolean){
         this.myName = myName;
         this.discription = discription;
         this.duration = duration;
