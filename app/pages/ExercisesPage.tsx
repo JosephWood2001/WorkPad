@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { FAB } from 'react-native-paper';
+import { FAB, TextInput } from 'react-native-paper';
 import LoadExercise from '../Functions/LoadExercise';
 import SaveExercise from '../Functions/SaveExercise';
 import Exercise from '../objects/Exercise';
@@ -12,13 +12,14 @@ import ExerciseWidget from './ExerciseWidget';
 function ExercisesPage() {
 
     const [exercises,setExercises] = useState([] as Exercise[]);
+    const [newExercise,setNewExercises] = useState(null as Exercise|null);
     
     const load = async (myName:string) => {
         let exercise = await LoadExercise(myName);
         if(exercise != null){
             exercises.push(exercise);
         }
-        //hacky way to get the component to reload. Updating exercises by setting it to itself
+        
         setExercises([...exercises]);
     }
     
@@ -27,24 +28,34 @@ function ExercisesPage() {
             exercises.pop();
         }
         load("Push-Ups");
-    },[])
+    },[]);
     
-    
+    let newExerciseWidget: JSX.Element|null = null;
+    useEffect(()=>{
+        if(newExercise != null){
+            newExerciseWidget = <ExerciseWidget exercise={newExercise as Exercise} editable={true} isNew={true}/>;
+        }else{
+            newExerciseWidget = null;
+        }
+    },[newExercise]);
 
     return (
         <View style={{
             padding:5,
             flex:1,
         }}>
+            {newExerciseWidget}
             {
                 exercises.map((exercise) =>
-                    <ExerciseWidget exercise={exercise} editable={true} key={exercise.myName}></ExerciseWidget>
+                    <ExerciseWidget exercise={exercise} editable={true} key={exercise.myName} isNew={false}></ExerciseWidget>
                 )
             }
             <FAB
                 style={styles.fab}
                 icon="plus"
-                onPress={() => console.log('Pressed')}
+                onPress={() => {
+                    setExercises([...exercises, new Exercise("unnamed","",null,null,false)]);
+                }}
             />
         </View>
     );

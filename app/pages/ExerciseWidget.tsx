@@ -5,12 +5,12 @@ import LoadExercise from '../Functions/LoadExercise';
 import SaveExercise from '../Functions/SaveExercise';
 import Exercise from '../objects/Exercise';
 
-function ExerciseWidget(props : {exercise:Exercise,editable:boolean}) {
+function ExerciseWidget(props : {exercise:Exercise,editable:boolean,isNew:boolean}) {
 
     let myName = props.exercise.myName;
     
     //state for the editing mode
-    const [editing,setEditing] = useState(false);
+    const [editing,setEditing] = useState(props.isNew);
     
     //states for widget values
     const [discription,setDiscription] = useState(props.exercise.discription);
