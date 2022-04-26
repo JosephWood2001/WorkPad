@@ -5,18 +5,26 @@ import LoadExercise from '../Functions/LoadExercise';
 import SaveExercise from '../Functions/SaveExercise';
 import Exercise from '../objects/Exercise';
 
-function ExerciseWidget(props : {exercise:Exercise,editable:boolean,isNew:boolean}) {
 
-    let myName = props.exercise.myName;
+interface ExerciseWidgetProps {
+    exercise?:Exercise,
+    editable?:boolean,
+    isNew?:boolean,
+    out?:() => Exercise
+}
+
+export const ExerciseWidget: React.FunctionComponent<ExerciseWidgetProps> = props => {
+
+    let myName = (props.exercise as Exercise).myName;
     
     //state for the editing mode
     const [editing,setEditing] = useState(props.isNew);
     
     //states for widget values
-    const [discription,setDiscription] = useState(props.exercise.discription);
-    const [duration,setDuration] = useState(props.exercise.duration);
-    const [intensity,setIntensity] = useState(props.exercise.intensity);
-    const [record,setRecord] = useState(props.exercise.record);
+    const [discription,setDiscription] = useState((props.exercise as Exercise).discription);
+    const [duration,setDuration] = useState((props.exercise as Exercise).duration);
+    const [intensity,setIntensity] = useState((props.exercise as Exercise).intensity);
+    const [record,setRecord] = useState((props.exercise as Exercise).record);
 
     //content that will be displays in the body of the card
     const content: JSX.Element[] = [];
@@ -135,4 +143,8 @@ function ExerciseWidget(props : {exercise:Exercise,editable:boolean,isNew:boolea
     );
 }
 
-export default ExerciseWidget;
+ExerciseWidget.defaultProps = {
+    exercise: new Exercise("","",null,null,false),
+    editable: false,
+    isNew: false 
+};
